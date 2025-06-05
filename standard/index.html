@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components</title>
+    <script defer src="./src/components/BasicCustomElement.js"></script>
+  </head>
+  <body>
+    <h1 class="text-3xl font-bold underline">
+      App with standar Web Components
+    </h1>
+    <basic-custom-element message="Mensaje como parámetro">
+      Texto dentro del componente
+      <span class="text-red-500">Texto dentro del componente como span</span>
+      <div>
+        Se pueden poner iconos: <i data-lucide="badge-check"></i>
+      </div>
+    </basic-custom-element>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</html>
