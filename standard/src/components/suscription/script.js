@@ -17,6 +17,22 @@ template.innerHTML = `
 
     :host([selected]) .card { border-color: rgb(0, 0, 0); }
 
+    :host([best]) .header h3 {
+        position: relative;
+        padding-right: 3rem; /* espacio para el badge */
+        }
+
+        :host([best]) .header h3::after {
+        content: 'Best';
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: rgb(82, 39, 167);
+        color: #fff;
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        }
 
 
     .header { text-align: center; margin-bottom: 1rem; }
@@ -30,8 +46,26 @@ template.innerHTML = `
     .features-label { font-weight: bold; margin-top: 1rem; }
     .features-label::after { content: ':'; }
 
-    .features { list-style: none; padding: 0; margin-bottom: 1rem; }
-    .features li { margin: 0.25rem 0; }
+    .features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1rem 0;
+    }
+
+    .features li {
+        align-items: center;
+        margin: 0.25rem 0;
+    }
+
+    ::slotted(li) {
+        align-items: center;
+        margin: 0.25rem 0;
+    }
+    ::slotted(li) img {
+        margin-right: 0.5em;
+        vertical-align: middle;
+    }
+    
 
     button { width: 100%;
              padding: 0.5rem;
@@ -46,6 +80,22 @@ template.innerHTML = `
     :host([selected]) button { 
         background-color: rgb(0, 0, 0);
         color: #fff; }
+    
+    ul[slot="features"] {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul[slot="features"] li {
+        align-items: center;
+        margin: 0.25rem 0;
+    }
+    
+    ul[slot="features"] li img {
+        margin-right: 0.5em;
+    }
+
 </style>
 <div class="card">
     <div class="header">
@@ -68,88 +118,40 @@ class SubscriptionCard extends HTMLElement {
         const shadow = this.attachShadow({ mode: 'open' });
         shadow.appendChild(template.content.cloneNode(true));
     }
-        
-
-    static get observedAttributes() {
-        return ['plan', 'visits', 'price', 'currency', 'features', 'message', 'best', 'features-label'];
-
-    }
-
-    attributeChangedCallback() {
-        this._render();
-    }
-
-    _render() {
-        // Manejar los cambios de atributos si es necesario
-        const plan = this.getAttribute('plan') || 'Plan';
-        const visits = this.getAttribute('visits') || '0';
-        const price = this.getAttribute('price') || '0';
-        const currency = this.getAttribute('currency') || '$';
-        const message = this.getAttribute('message') || 'Subscribe now!';
-        const features = this.getAttribute('features') ? this.getAttribute('features').split(',').map(s => s.trim()) : [];
-        const featuresLabel = this.getAttribute('features-label') || 'Features:';
-
-        // Actualizar los slots con los nuevos valores
-        const shadow = this.shadowRoot;
-        shadow.querySelector('slot[name="plan"]').textContent = plan;
-        shadow.querySelector('slot[name="visits"]').textContent = visits;
-        shadow.querySelector('slot[name="price"]').textContent = price;
-        shadow.querySelector('slot[name="currency"]').textContent = currency;
-        shadow.querySelector('slot[name="message"]').textContent = message;
-        shadow.querySelector('slot[name="features-label"]').textContent = featuresLabel;
-
-
-        
-        const ul = shadow.querySelector('ul.features');
-        ul.innerHTML = features.map(feature => `<li> <img src="./assets/badge-check.png" alt="check" style="width:1em;vertical-align:middle;margin-right:0.5em;" >${feature}</li>`).join('');
-
-
-        shadow.querySelector('.card').classList.toggle('best', this.hasAttribute('best'));
-        
-        // Si el componente tiene el atributo best, se le añade un texto especial al lado del nombre 
-        // del plan que sea de fondo
-        // morado rgb(82, 39, 167) y con letras blancas de fondo pero mas pequeñas
-        if (this.hasAttribute('best')) {
-
-            const exisingBadge = shadow.querySelector('.header h3 span');
-            if (exisingBadge) {
-                exisingBadge.remove();
-            }
-
-            const bestBadge = document.createElement('span');
-            bestBadge.textContent = 'Best';
-            bestBadge.style.backgroundColor = 'rgb(82, 39, 167)';
-            bestBadge.style.color = '#fff';
-            bestBadge.style.fontSize = '0.8rem';
-            bestBadge.style.padding = '0.2rem 0.5rem';
-            bestBadge.style.borderRadius = '4px';
-            bestBadge.style.marginLeft = '0.5rem';
-            const header = shadow.querySelector('.header h3');
-            if (header) {
-                header.appendChild(bestBadge);
-            }
-        } else {
-            const badge = shadow.querySelector('.header h3 span');
-            if (badge) badge.remove();
-        }
-    }
-
+    
         
 
     connectedCallback() {
         // Llamamos al método de renderizado inicial
-        this._render();
-        this.shadowRoot.querySelector('button').addEventListener('click', () => {
-            this._onClick();
-        });
+        this._renderFeatures();
+        this.shadowRoot.querySelector('button').addEventListener('click', this._onClick.bind(this));
     
     }
 
     disconnectedCallback() {
-        this.shadowRoot.querySelector('button').removeEventListener('click', () => {
-            this._onClick();
-        });
+        this.shadowRoot.querySelector('button').removeEventListener('click', this._onClick.bind(this));
+        
+    };
+
+     _renderFeatures() {
+        // 1) Tomamos el <ul slot="features"> del light DOM
+        const userList = this.querySelector('ul[slot="features"]');
+        const features = userList
+        ? Array.from(userList.querySelectorAll('li'))
+            .map(li => li.textContent.trim())
+        : [];
+
+        // 2) Renderizamos internamente con icono
+        const ul = this.shadowRoot.querySelector('.features');
+        ul.innerHTML = features.map(text => `
+        <li>
+            <img src="./assets/badge-check.png" alt="✓" style="width:1em;vertical-align:middle;margin-right:0.5em;">
+            ${text}
+        </li>
+        `).join('');
     }
+
+
 
 
     _onClick() {
@@ -162,11 +164,14 @@ class SubscriptionCard extends HTMLElement {
 
 
         this.toggleAttribute('selected');
+
+        const planName = this.querySelector('[slot="plan"]').textContent.trim();
+
         this.dispatchEvent(new CustomEvent('suscripcion-selected', {
             bubbles: true,
             composed: true,
             detail: {
-                plan: this.getAttribute('plan'),
+                plan: planName,
             }
         }));
     
