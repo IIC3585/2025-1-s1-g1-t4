@@ -5,7 +5,7 @@ MoneyExchange
 
 | Integrantes | Mail UC |
 |-|-|
-| Tarek Elías Hirmas Aboid | tarek.hirmas@uc.cl |
+| Tarek Hirmas Aboid | tarek.hirmas@uc.cl |
 | Sebastián Lobo Cáceres | salobo@uc.cl|
 | Anita Martí Campos | asmarti@uc.cl |
 
