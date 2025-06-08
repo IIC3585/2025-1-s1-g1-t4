@@ -30,7 +30,6 @@ accordionTriggerTemplate.innerHTML = `
     }
 
     .trigger.active {
-        background: #e3f2fd;
         border-left: 4px solid #2196f3;
     }
 

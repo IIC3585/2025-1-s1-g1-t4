@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -79,5 +79,666 @@
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>lucide.createIcons();</script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Card Component Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        
+        .theme-section {
+            margin-bottom: 4rem;
+        }
+        
+        .theme-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .controls button {
+            background: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .selected-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 2rem;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Subscription Card Component</h1>
+        
+        <div class="controls">
+            <button onclick="changeTheme('classic')">Classic Theme</button>
+            <button onclick="changeTheme('modern')">Modern Theme</button>
+            <button onclick="changeTheme('gradient')">Gradient Theme</button>
+            <button onclick="changeTheme('glass')">Glass Theme</button>
+        </div>
+        
+        <div class="theme-section">
+            <div class="cards-grid">
+                <subscription-card 
+                    id="card1"
+                    theme="classic"
+                    plan="Básico"
+                    visits="1,000"
+                    visits-unit="visitas mensuales"
+                    price="9"
+                    currency="$"
+                    period="mes"
+                    message="Perfecto para empezar tu aventura digital"
+                    features="Acceso básico,Soporte por email,1 proyecto"
+                    features-label="Características:"
+                    button-text="Comenzar">
+                </subscription-card>
+                
+                <subscription-card 
+                    id="card2"
+                    theme="modern"
+                    plan="Profesional"
+                    visits="10,000"
+                    visits-unit="visitas mensuales"
+                    price="29"
+                    currency="$"
+                    period="mes"
+                    message="Ideal para profesionales y pequeñas empresas"
+                    features="Todo del plan Básico,Soporte prioritario,5 proyectos,Analytics avanzado"
+                    features-label="Incluye:"
+                    button-text="Elegir Plan"
+                    best
+                    best-text="🚀 Más Popular">
+                </subscription-card>
+                
+                <subscription-card 
+                    id="card3"
+                    theme="gradient"
+                    plan="Empresarial"
+                    visits="100,000"
+                    visits-unit="visitas mensuales"
+                    price="99"
+                    currency="$"
+                    period="mes"
+                    message="Solución completa para grandes empresas"
+                    features="Todo del plan Profesional,Soporte 24/7,Proyectos ilimitados,API personalizada,Gerente de cuenta"
+                    features-label="Características premium:"
+                    button-text="Contactar Ventas">
+                </subscription-card>
+            </div>
+        </div>
+        
+        <div class="selected-info" id="selectedInfo" style="display: none;">
+            <h3>Plan Seleccionado</h3>
+            <p id="selectedDetails"></p>
+        </div>
+    </div>
+
+    <script>
+        function changeTheme(theme) {
+            const cards = document.querySelectorAll('subscription-card');
+            cards.forEach(card => {
+                card.setAttribute('theme', theme);
+            });
+        }
+
+        document.querySelectorAll('subscription-card').forEach(card => {
+            card.addEventListener('select', (event) => {
+                const selectedInfo = document.getElementById('selectedInfo');
+                const selectedDetails = document.getElementById('selectedDetails');
+                selectedDetails.textContent = `Plan: ${event.detail.plan}, Precio: ${event.detail.price}${event.detail.currency} ${event.detail.period}`;
+                selectedInfo.style.display = 'block';
+            });
+        });
+        document.querySelectorAll('subscription-card').forEach(card => {
+            card.addEventListener('deselect', () => {
+                const selectedInfo = document.getElementById('selectedInfo');
+                selectedInfo.style.display = 'none';
+            });
+        });
+
+        const template = document.createElement('template');
+template.innerHTML = `
+<style>
+    :host {
+        display: block;
+        max-width: var(--card-max-width, 320px);
+        font-family: var(--card-font-family, inherit);
+        --card-radius: var(--card-border-radius, 8px);
+        --card-shadow: var(--card-box-shadow, 0 2px 4px rgba(0,0,0,0.1));
+        --card-transition: var(--card-transition-duration, 0.3s);
+    }
+    
+    .card {
+        background: var(--card-background, #fff);
+        border: var(--card-border, 1px solid #ccc);
+        border-radius: var(--card-radius);
+        padding: var(--card-padding, 1rem);
+        box-shadow: var(--card-shadow);
+        transition: all var(--card-transition) ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Tema Classic (por defecto) */
+    :host(.classic) .card,
+    :host(:not([theme])) .card {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    :host(.classic[selected]) .card,
+    :host(:not([theme])[selected]) .card {
+        border-color: #000;
+    }
+
+    /* Tema Modern */
+    :host(.modern) .card {
+        background: white;
+        border: none;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    :host(.modern) .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+    }
+
+    :host(.modern[selected]) .card {
+        ring: 2px solid #ec4899;
+        box-shadow: 0 0 0 2px #ec4899, 0 16px 48px rgba(0,0,0,0.15);
+    }
+
+    /* Tema Gradient */
+    :host(.gradient) .card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 20px;
+        color: white;
+    }
+
+    :host(.gradient[selected]) .card {
+        box-shadow: 0 0 0 3px #fbbf24;
+    }
+
+    /* Tema Glass */
+    :host(.glass) .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    :host(.glass[selected]) .card {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Badge "Best" */
+    .best-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--badge-background, rgb(82, 39, 167));
+        color: var(--badge-color, white);
+        font-size: var(--badge-font-size, 0.75rem);
+        font-weight: bold;
+        padding: 6px 16px;
+        border-radius: 20px;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    :host(.modern) .best-badge {
+        background: linear-gradient(45deg, #ec4899, #f97316);
+        top: -10px;
+    }
+
+    :host(.gradient) .best-badge {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    :host(.glass) .best-badge {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: var(--header-margin-bottom, 1rem);
+        margin-top: var(--header-margin-top, 0);
+    }
+
+    .header h3 {
+        margin: 0;
+        font-size: var(--plan-title-size, 1.2rem);
+        font-weight: var(--plan-title-weight, bold);
+        color: var(--plan-title-color, inherit);
+    }
+
+    :host(.modern) .header h3 {
+        font-size: 1.25rem;
+        color: #1f2937;
+    }
+
+    :host(.gradient) .header h3,
+    :host(.glass) .header h3 {
+        color: white;
+    }
+
+    .visits {
+        font-size: var(--visits-font-size, 0.9rem);
+        color: var(--visits-color, #666);
+        margin-top: 0.25rem;
+    }
+
+    :host(.modern) .visits {
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    :host(.gradient) .visits,
+    :host(.glass) .visits {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .description {
+        font-size: var(--description-font-size, 0.9rem);
+        color: var(--description-color, #444);
+        margin: var(--description-margin, 0.5rem 0);
+        text-align: center;
+    }
+
+    :host(.modern) .description {
+        color: #6b7280;
+        font-size: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    :host(.gradient) .description,
+    :host(.glass) .description {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .price {
+        font-size: var(--price-font-size, 2rem);
+        font-weight: var(--price-font-weight, bold);
+        margin: var(--price-margin, 0.5rem 0);
+        text-align: center;
+        color: var(--price-color, inherit);
+    }
+
+    :host(.modern) .price {
+        font-size: 2.5rem;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+
+    :host(.modern) .price .period {
+        font-size: 1rem;
+        color: #6b7280;
+        font-weight: normal;
+    }
+
+    :host(.gradient) .price,
+    :host(.glass) .price {
+        color: white;
+    }
+
+    .features-label {
+        font-weight: var(--features-label-weight, bold);
+        margin-top: var(--features-label-margin-top, 1rem);
+        color: var(--features-label-color, inherit);
+    }
+
+    :host(.modern) .features-label {
+        color: #374151;
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+
+    :host(.gradient) .features-label,
+    :host(.glass) .features-label {
+        color: white;
+    }
+
+    .features {
+        list-style: none;
+        padding: 0;
+        margin: var(--features-margin, 0 0 1rem 0);
+    }
+
+    .features li {
+        margin: var(--features-item-margin, 0.25rem 0);
+        display: flex;
+        align-items: flex-start;
+        gap: var(--features-item-gap, 0.5rem);
+        color: var(--features-item-color, inherit);
+    }
+
+    :host(.modern) .features li {
+        margin: 0.75rem 0;
+        font-size: 0.875rem;
+        color: #374151;
+    }
+
+    :host(.gradient) .features li,
+    :host(.glass) .features li {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .feature-icon {
+        width: var(--feature-icon-size, 1em);
+        height: var(--feature-icon-size, 1em);
+        vertical-align: middle;
+        flex-shrink: 0;
+        margin-top: 0.125rem;
+    }
+
+    :host(.modern) .feature-icon {
+        color: #10b981;
+        font-size: 0.875rem;
+    }
+
+    button {
+        width: 100%;
+        padding: var(--button-padding, 0.75rem 1rem);
+        border: var(--button-border, 1px solid #000);
+        background: var(--button-background, #fff);
+        color: var(--button-color, #000);
+        border-radius: var(--button-radius, 4px);
+        cursor: pointer;
+        font-size: var(--button-font-size, 1rem);
+        font-weight: var(--button-font-weight, normal);
+        transition: all var(--card-transition) ease;
+    }
+
+    button:hover {
+        background: var(--button-hover-background, #f5f5f5);
+        color: var(--button-hover-color, #000);
+        transform: var(--button-hover-transform, none);
+    }
+
+    :host([selected]) button {
+        background: var(--button-selected-background, #000);
+        color: var(--button-selected-color, #fff);
+    }
+
+    /* Estilos específicos para tema Modern */
+    :host(.modern) button {
+        background: linear-gradient(45deg, #f97316, #ec4899);
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 0.875rem 1.5rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+    }
+
+    :host(.modern) button:hover {
+        background: linear-gradient(45deg, #ea580c, #db2777);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* Estilos específicos para tema Gradient */
+    :host(.gradient) button {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+
+    :host(.gradient) button:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Estilos específicos para tema Glass */
+    :host(.glass) button {
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+
+    :host(.glass) button:hover {
+        background: rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+</style>
+<div class="card">
+    <div class="best-badge" style="display: none;">
+        <slot name="best-text">🌟 Más Popular</slot>
+    </div>
+    <div class="header">
+        <h3><slot name="plan">Plan</slot></h3>
+        <div class="visits"><slot name="visits">0</slot> <slot name="visits-unit">monthly visits</slot></div>
+    </div>
+    <p class="description"><slot name="message"></slot></p>
+    <div class="price">
+        <slot name="currency">$</slot><slot name="price">0</slot><span class="period">/<slot name="period">mo</slot></span>
+    </div>
+    <div class="features-label"><slot name="features-label">Features</slot></div>
+    <ul class="features"></ul>
+    <button part="button"><slot name="button-text">Get started</slot></button>
+</div>
+`;
+
+class SubscriptionCard extends HTMLElement {
+    constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        shadow.appendChild(template.content.cloneNode(true));
+        
+        this._boundClickHandler = this._onClick.bind(this);
+    }
+
+    static get observedAttributes() {
+        return [
+            'plan', 'visits', 'visits-unit', 'price', 'currency', 'period',
+            'features', 'message', 'best', 'best-text', 'features-label',
+            'button-text', 'theme', 'selected'
+        ];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue) {
+            this._render();
+        }
+    }
+
+    connectedCallback() {
+        this._render();
+        this.shadowRoot.querySelector('button').addEventListener('click', this._boundClickHandler);
+    }
+
+    disconnectedCallback() {
+        this.shadowRoot.querySelector('button').removeEventListener('click', this._boundClickHandler);
+    }
+
+    _render() {
+        const shadow = this.shadowRoot;
+        
+        // Aplicar tema
+        this._applyTheme();
+        
+        // Actualizar contenido dinámico
+        this._updateFeatures();
+        this._updateBestBadge();
+    }
+
+    _applyTheme() {
+        const theme = this.getAttribute('theme') || 'classic';
+        
+        // Remover clases de tema existentes
+        this.classList.remove('classic', 'modern', 'gradient', 'glass');
+        
+        // Aplicar nueva clase de tema
+        this.classList.add(theme);
+    }
+
+    _updateFeatures() {
+        const features = this.getAttribute('features');
+        const featuresContainer = this.shadowRoot.querySelector('ul.features');
+        
+        if (features) {
+            const featuresList = features.split(',').map(s => s.trim());
+            const theme = this.getAttribute('theme') || 'classic';
+            
+            let iconHtml;
+            switch (theme) {
+                case 'modern':
+                    iconHtml = '<span class="feature-icon">✓</span>';
+                    break;
+                case 'gradient':
+                case 'glass':
+                    iconHtml = '<span class="feature-icon">✨</span>';
+                    break;
+                default:
+                    iconHtml = '<img src="./assets/badge-check.png" alt="check" class="feature-icon" style="width:1em;vertical-align:middle;" onerror="this.outerHTML=\'<span class=&quot;feature-icon&quot;>✓</span>\'">';
+            }
+            
+            featuresContainer.innerHTML = featuresList
+                .map(feature => `<li>${iconHtml}<span>${feature}</span></li>`)
+                .join('');
+        } else {
+            featuresContainer.innerHTML = '';
+        }
+    }
+
+    _updateBestBadge() {
+        const bestBadge = this.shadowRoot.querySelector('.best-badge');
+        const isBest = this.hasAttribute('best');
+        
+        bestBadge.style.display = isBest ? 'block' : 'none';
+    }
+
+    _onClick() {
+        // Remover selección de otras tarjetas
+        const selectedCards = document.querySelectorAll('subscription-card[selected]');
+        selectedCards.forEach(card => {
+            if (card !== this) {
+                card.removeAttribute('selected');
+            }
+        });
+
+        // Toggle selección en esta tarjeta
+        this.toggleAttribute('selected');
+        
+        // Disparar evento personalizado
+        this.dispatchEvent(new CustomEvent('subscription-selected', {
+            bubbles: true,
+            composed: true,
+            detail: {
+                plan: this.getAttribute('plan'),
+                price: this.getAttribute('price'),
+                currency: this.getAttribute('currency'),
+                selected: this.hasAttribute('selected')
+            }
+        }));
+    }
+
+    // Métodos públicos para API programática
+    select() {
+        if (!this.hasAttribute('selected')) {
+            this._onClick();
+        }
+    }
+
+    deselect() {
+        if (this.hasAttribute('selected')) {
+            this.removeAttribute('selected');
+        }
+    }
+
+    isSelected() {
+        return this.hasAttribute('selected');
+    }
+
+    setTheme(theme) {
+        this.setAttribute('theme', theme);
+    }
+
+    getTheme() {
+        return this.getAttribute('theme') || 'classic';
+    }
+}
+
+// Definir el componente
+customElements.define('subscription-card', SubscriptionCard);
+
+    </script>
 </body>
 </html>

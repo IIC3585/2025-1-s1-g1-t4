@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen relative bg-gradient-to-br from-pink-100 via-blue-50 to-purple-100">
+    
+    <!-- Animated Background Bubbles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <!-- Large bubble -->
+        <div class="bubble-animation absolute top-20 left-4 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 rounded-full gradient-bubble opacity-30"></div>
+        <!-- Medium bubbles -->
+        <div class="bubble-animation absolute top-40 right-4 sm:right-20 w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-blue-200/40 to-purple-300/40 blur-sm"></div>
+        <div class="bubble-animation absolute top-96 left-1/4 w-40 h-40 sm:w-64 sm:h-64 rounded-full bg-gradient-to-br from-pink-200/40 to-orange-200/40 blur-sm opacity-70"></div>
+        <!-- Small bubbles -->
+        <div class="bubble-animation absolute top-1/3 right-1/3 w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-cyan-200/50 to-blue-300/50 blur-sm"></div>
+        <div class="bubble-animation absolute top-1/2 right-8 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-purple-200/60 to-pink-300/60 blur-sm"></div>
+        <div class="bubble-animation absolute top-3/4 left-8 w-28 h-28 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-yellow-200/40 to-pink-200/40 blur-sm opacity-80"></div>
+        <!-- Tiny decorative bubbles -->
+        <div class="bubble-animation absolute top-16 right-1/4 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-300/70 to-purple-400/70 blur-sm"></div>
+        <div class="bubble-animation absolute bottom-20 left-1/3 w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-pink-300/60 to-red-300/60 blur-sm"></div>
+        <!-- Additional mobile bubbles -->
+        <div class="bubble-animation absolute top-80 right-6 w-20 h-20 rounded-full bg-gradient-to-br from-green-200/50 to-teal-300/50 blur-sm opacity-60"></div>
+        <div class="bubble-animation absolute top-[120vh] left-6 w-36 h-36 rounded-full bg-gradient-to-br from-indigo-200/40 to-purple-300/40 blur-sm opacity-50"></div>
+    </div>
+
+    <div class="min-h-screen flex items-center justify-center py-10 px-4 sm:px-6 relative z-10">
+        <div class="flex flex-col max-w-5xl mx-auto text-center w-full gap-8 sm:gap-12">
+            <!-- Header -->
+            <div>
+                <div class="flex justify-center mb-6 sm:mb-8">
+                    <div class="p-4 sm:p-6 glass-card rounded-full shadow-2xl hover:shadow-pink-200/50 transition-all duration-500 hover:scale-110">
+                        <i data-lucide="code2" class="w-12 h-12 sm:w-16 sm:h-16 text-purple-600"></i>
+                    </div>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent leading-tight px-4">
+                    Web Components Hub
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium px-4">
+                    ✨ Descubre dos enfoques mágicos para crear Web Components modernos y reutilizables ✨
+                </p>
+            </div>
+
+            <!-- Cards Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 px-4">
+                <!-- Standard Web Components Card -->
+                <div class="group relative">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 hover:shadow-2xl hover:shadow-blue-200 transition-all duration-100 hover:scale-105 hover:-translate-y-2 shadow-lg h-full">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-200/20 via-cyan-100/30 to-blue-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="flex justify-center mb-6 sm:mb-8">
+                                <div class="p-4 sm:p-5 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full shadow-lg group-hover:shadow-blue-300/50 transition-all duration-500 group-hover:scale-110">
+                                    <i data-lucide="globe" class="w-8 h-8 sm:w-10 sm:h-10 text-white"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 group-hover:text-blue-700 transition-colors duration-300">
+                                Web Components Standard
+                            </h3>
+                            <p class="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed font-medium">
+                                🌟 Implementación nativa usando las APIs estándar: Custom Elements, Shadow DOM y HTML Templates
+                            </p>
+                            <button 
+                                onclick="navigateToStandard()"
+                                class="mt-auto w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 hover:shadow-xl hover:shadow-blue-300/40 hover:scale-105 text-base sm:text-lg"
+                            >
+                                <span>🚀 Explorar Standard</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lit Element Card -->
+                <div class="group relative">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 hover:shadow-2xl hover:shadow-purple-200 transition-all duration-100 hover:scale-105 hover:-translate-y-2 shadow-lg h-full">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-200/20 via-pink-100/30 to-purple-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="flex justify-center mb-6 sm:mb-8">
+                                <div class="p-4 sm:p-5 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full shadow-lg group-hover:shadow-purple-300/50 transition-all duration-500 group-hover:scale-110">
+                                    <i data-lucide="zap" class="w-8 h-8 sm:w-10 sm:h-10 text-white"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6 group-hover:text-purple-700 transition-colors duration-300">
+                                Web Components con Lit Element
+                            </h3>
+                            <p class="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed font-medium">
+                                ⚡ Framework moderno y ligero que simplifica la creación con templates reactivos y potentes
+                            </p>
+                            <button 
+                                onclick="navigateToLit()"
+                                class="mt-auto w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 hover:shadow-xl hover:shadow-purple-300/40 hover:scale-105 text-base sm:text-lg"
+                            >
+                                <span>✨ Explorar Lit</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl hover:shadow-2xl transition-all duration-500 mx-4">
+                <div class="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div class="p-2 sm:p-3 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full">
+                        <i data-lucide="info" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">¿Qué encontrarás?</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-sm sm:text-base text-gray-700 font-medium">
+                    <div class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl">
+                        <div class="p-1.5 sm:p-2 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex-shrink-0">
+                            <i data-lucide="box" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                        </div>
+                        <span>Componentes individuales para experimentar cada funcionalidad</span>
+                    </div>
+                    <div class="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl">
+                        <div class="p-1.5 sm:p-2 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full flex-shrink-0">
+                            <i data-lucide="layout" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                        </div>
+                        <span>Casos de uso reales implementados en páginas html</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navigation functions
+        function navigateToStandard() {
+            window.location.href = "./standard/index.html";
+        }
+
+        function navigateToLit() {
+            window.location.href = "./lit/index.html";
+        }
+
+        // Enhanced card hover effects
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.group > div');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const deltaX = (x - centerX) / centerX;
+                    const deltaY = (y - centerY) / centerY;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${deltaY * -8}deg) rotateY(${deltaX * 8}deg) translateZ(20px)`;
+                } else {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                }
+            });
+        });
+
+        // Add sparkle effect on hover
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.width = '4px';
+            sparkle.style.height = '4px';
+            sparkle.style.background = 'radial-gradient(circle, #fff 0%, transparent 70%)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.animation = 'sparkle 1s ease-out forwards';
+            sparkle.style.zIndex = '1000';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                document.body.removeChild(sparkle);
+            }, 1000);
+        }
+
+        // Add sparkle keyframe
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add sparkles on button hover
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        createSparkle(
+                            rect.left + Math.random() * rect.width,
+                            rect.top + Math.random() * rect.height
+                        );
+                    }, i * 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
