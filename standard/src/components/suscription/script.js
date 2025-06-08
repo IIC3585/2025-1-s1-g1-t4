@@ -80,8 +80,7 @@ class SubscriptionCard extends HTMLElement {
     }
 
     _render() {
-        // Aquí podrías manejar los cambios de atributos si es necesario
-        // Por ejemplo, actualizar el contenido del slot correspondiente
+        // Manejar los cambios de atributos si es necesario
         const plan = this.getAttribute('plan') || 'Plan';
         const visits = this.getAttribute('visits') || '0';
         const price = this.getAttribute('price') || '0';
@@ -147,7 +146,6 @@ class SubscriptionCard extends HTMLElement {
     }
 
     disconnectedCallback() {
-        // Aquí podrías limpiar los eventos o referencias si es necesario
         this.shadowRoot.querySelector('button').removeEventListener('click', this.handleSubscribe);
     }
 
@@ -177,9 +175,5 @@ class SubscriptionCard extends HTMLElement {
 // Definimos el nombre del componente personalizado
 customElements.define('suscripcion-card', SubscriptionCard);
 // Este componente se puede usar en el HTML de la siguiente manera:
-// <subscription-component></subscription-component>
-// Esto creará un componente que muestra un mensaje de suscripción y un botón para activar la suscripción.
-// Al hacer clic en el botón, el mensaje se actualizará para indicar que la suscripción fue exitosa.
-// Este enfoque modular y reutilizable permite crear componentes personalizados que encapsulan su propia lógica y presentación,
-// lo que facilita su mantenimiento y reutilización en diferentes partes de la aplicación.
-// Además, al usar un template, se puede definir la estructura y los estilos del componente de manera clara y reutilizable,
+// <subscription-card></subscription-card>
+
