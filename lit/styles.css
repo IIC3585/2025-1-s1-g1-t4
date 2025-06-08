@@ -1,0 +1,75 @@
+:root {
+  /* Colores base */
+  --color-primary: #f97316;
+  --color-primary-light: #f59e0b;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-text-inverted: white;
+  --color-text-inverted-light: #ffedd5;
+  --color-secondary: #2563eb;
+  --color-secondary-light: #60a5fa;
+  --color-bg: white;
+  --color-bg-highlighted: linear-gradient(
+    to bottom right,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
+  --color-border: #e5e7eb;
+  --color-accent: #fed7aa;
+  
+  /* Colores de contraste para texto */
+  --color-primary-foreground: var(--color-text-inverted);
+  --color-primary-light-foreground: var(--color-text-inverted);
+  --color-secondary-foreground: var(--color-text-inverted);
+  --color-secondary-light-foreground: var(--color-text-inverted);
+  --color-bg-foreground: var(--color-text);
+  --color-bg-highlighted-foreground: var(--color-text-inverted);
+  --color-border-foreground: var(--color-text);
+  --color-accent-foreground: var(--color-text);
+  
+  /* Tamaños */
+  --font-size-small: 1rem;  /* Aumentado */
+  --font-size-base: 1.125rem;  /* Aumentado */
+  --font-size-medium: 1.75rem;  /* Aumentado */
+  --font-size-large: 3rem;  /* Aumentado */
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 1.5rem;  /* Nuevo */
+  --border-radius-full: 9999px;
+
+  /* Espaciado */
+  --space-xs: 0.75rem;  /* Aumentado */
+  --space-sm: 1rem;  /* Aumentado */
+  --space-md: 1.5rem;  /* Aumentado */
+  --space-lg: 2rem;  /* Aumentado */
+  --space-xl: 3rem;  /* Aumentado */
+
+  /* Sombras */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);  /* Nuevo */
+
+  /* Transiciones */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+  --transition-slow: all 0.5s ease;  /* Nuevo */
+}
+
+/* Media queries para tamaños grandes */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-small: 1.125rem;
+    --font-size-base: 1.25rem;
+    --font-size-medium: 2rem;
+    --font-size-large: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --font-size-small: 1.25rem;
+    --font-size-base: 1.5rem;
+    --font-size-medium: 2.5rem;
+    --font-size-large: 4rem;
+  }
+}
