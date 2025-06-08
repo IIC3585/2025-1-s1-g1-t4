@@ -146,7 +146,9 @@ class SubscriptionCard extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.shadowRoot.querySelector('button').removeEventListener('click', this.handleSubscribe);
+        this.shadowRoot.querySelector('button').removeEventListener('click', () => {
+            this._onClick();
+        });
     }
 
 
