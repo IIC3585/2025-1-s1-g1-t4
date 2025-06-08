@@ -4,62 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo Suscripciones (Web Components nativo)</title>
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
 </head>
 <body>
   <h1>Suscripciones Disponibles</h1>
 
-  <suscripcion-card
-    plan="Basic"
-    visits="500"
-    price="0"
-    currency="$"
-    features-label="Features included"
-    features="Daily visits,Monthly visits reporting,Google Analytics integration,Facebook integration"
-    message="Basic tarif is build for those users who want to try and grow with our app without paying."
-  ></suscripcion-card>
+  <suscripcion-card>
+    <span slot="plan">Basic</span>
+    <span slot="visits">500</span>
+    <span slot="currency">$</span><span slot="price">0</span>
+    <span slot="features-label">Features included</span>
+    <ul slot="features">
+      <li>Daily visits</li>
+      <li>Monthly visits reporting</li>
+      <li>Google Analytics integration</li>
+      <li>Facebook integration</li>
+    </ul>
+    <span slot="message">
+      Basic tarif is built for those users who want to try and grow with our app without paying.
+    </span>
+  </suscripcion-card>
 
-  <suscripcion-card
-    plan="Freelance"
-    visits="10 000"
-    price="16"
-    currency="$"
-    features-label="Basic plan plus"
-    features="Twitter integration,Instagram integration, Advanced Dashboard, Acquisition Dashboard, Client Billing"
-    message="Freelance tarif matching the analytics tool for clients"
-    best
-  ></suscripcion-card>
 
-  <suscripcion-card
-    plan="Bussiness"
-    visits="100 000"
-    price="49"
-    currency="$"
-    features-label="Freelance plan plus"
-    features="Competitor Dashboard, Behavior Dashboard, SEO Dashboard, Full API controll"
-    message="Bussiness tarif is taolored exactly for those who want to grow their business with our app."
-  ></suscripcion-card>
+  <suscripcion-card best>
+    <span slot="plan">Freelance</span>
+    <span slot="visits">10 000</span>
+    <span slot="currency">$</span><span slot="price">16</span>
+    <span slot="features-label">Basic plan plus</span>
+    <ul slot="features">
+      <li> Twitter integration</li>
+      <li> Instagram integration</li>
+      <li> Advanced Dashboard</li>
+      <li> Acquisition Dashboard</li>
+      <li> Client Billing</li>
+    </ul>
+    <span slot="message">
+      Freelance tarif matching the analytics tool for clients.
+    </span>
+  </suscripcion-card>
 
-   <suscripcion-card
-      plan="Enterprise"
-      visits="1 000 000+"
-      price="129"
-      currency="$"
-      features-label="Bussiness plan plus"
-      features="Custom Domain, White Label solution, Rich Snippets, 24/7 Support"
-      message="Enterprise tarif is for those who want to have a custom solution for their business."
-    ></suscripcion-card>
 
+  <suscripcion-card>
+    <span slot="plan">Business</span>
+    <span slot="visits">100 000</span>
+    <span slot="currency">$</span><span slot="price">49</span>
+    <span slot="features-label">Freelance plan plus</span>
+    <ul slot="features">
+      <li> Competitor Dashboard</li>
+      <li> Behavior Dashboard</li>
+      <li> SEO Dashboard</li>
+      <li> Full API control</li>
+    </ul>
+    <span slot="message">
+      Business tarif is tailored exactly for those who want to grow their business with our app.
+    </span>
+  </suscripcion-card>
+
+  <suscripcion-card>
+    <span slot="plan">Enterprise</span>
+    <span slot="visits">1 000 000+</span>
+    <span slot="currency">$</span><span slot="price">129</span>
+    <span slot="features-label">Business plan plus</span>
+    <ul slot="features">
+      <li> Custom Domain</li>
+      <li> White Label solution</li>
+      <li> Rich Snippets</li>
+      <li> 24/7 Support</li>
+    </ul>
+    <span slot="message">
+      Enterprise tarif is for those who want to have a custom solution for their business.
+    </span>
+  </suscripcion-card>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
 </html>
