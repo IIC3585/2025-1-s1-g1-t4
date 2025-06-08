@@ -101,7 +101,7 @@ class SubscriptionCard extends HTMLElement {
 
         
         const ul = shadow.querySelector('ul.features');
-        ul.innerHTML = features.map(feature => `<li> <img src="../../assets/badge-check.png" alt="check" style="width:1em;vertical-align:middle;margin-right:0.5em;" >${feature}</li>`).join('');
+        ul.innerHTML = features.map(feature => `<li> <img src="./assets/badge-check.png" alt="check" style="width:1em;vertical-align:middle;margin-right:0.5em;" >${feature}</li>`).join('');
 
 
         shadow.querySelector('.card').classList.toggle('best', this.hasAttribute('best'));

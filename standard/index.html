@@ -112,7 +112,56 @@
         </accordion-item>
       </custom-accordion>
     </div>
+
+    <h1 class="text-3xl font-bold underline">
+      Suscripciones
+    </h1>
+
+    <div class="flex flex-wrap gap-4 justify-center">
+      <suscripcion-card
+        plan="Basic"
+        visits="500"
+        price="0"
+        currency="$"
+        features-label="Features included"
+        features="Daily visits,Monthly visits reporting,Google Analytics integration,Facebook integration"
+        message="Basic tarif is build for those users who want to try and grow with our app without paying."
+      ></suscripcion-card>
+
+      <suscripcion-card
+        plan="Freelance"
+        visits="10 000"
+        price="16"
+        currency="$"
+        features-label="Basic plan plus"
+        features="Twitter integration,Instagram integration, Advanced Dashboard, Acquisition Dashboard, Client Billing"
+        message="Freelance tarif matching the analytics tool for clients"
+        best
+      ></suscripcion-card>
+
+      <suscripcion-card
+        plan="Bussiness"
+        visits="100 000"
+        price="49"
+        currency="$"
+        features-label="Freelance plan plus"
+        features="Competitor Dashboard, Behavior Dashboard, SEO Dashboard, Full API controll"
+        message="Bussiness tarif is taolored exactly for those who want to grow their business with our app."
+      ></suscripcion-card>
+
+      <suscripcion-card
+          plan="Enterprise"
+          visits="1 000 000+"
+          price="129"
+          currency="$"
+          features-label="Bussiness plan plus"
+          features="Custom Domain, White Label solution, Rich Snippets, 24/7 Support"
+          message="Enterprise tarif is for those who want to have a custom solution for their business."
+      ></suscripcion-card>
+    </div>
+
     <script type="module" src="./src/components/accordion/index.js"></script>
+    <script type="module" src="./src/components/suscription/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
