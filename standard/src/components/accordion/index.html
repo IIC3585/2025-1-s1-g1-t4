@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Components</title>
+  </head>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-4"
+  >
+    <h1 class="text-3xl font-bold underline">
+      Web Component - Estructura de un Accordion Personalizado
+    </h1>
+
+    <div>
+      <custom-accordion type="single" default-value="item-1" collapsible>
+        <accordion-item value="item-1">
+          <accordion-trigger>
+            <span>🚀</span>
+            <strong>¿Qué es un Web Component?</strong>
+            <span class="ml-auto text-[12px] text-[#666]">Básico</span>
+          </accordion-trigger>
+          <accordion-content>
+            <p>
+              Un Web Component es una tecnología que permite crear elementos
+              HTML personalizados y reutilizables.
+            </p>
+            <p>
+              Utiliza APIs estándar del navegador como Custom Elements, Shadow
+              DOM y HTML Templates.
+            </p>
+          </accordion-content>
+        </accordion-item>
+
+        <accordion-item value="item-2">
+          <accordion-trigger>
+            <span>🎨</span>
+            <strong>Shadow DOM y Encapsulación</strong>
+            <span class="ml-auto text-[#666] font-size-[12px]">Intermedio</span>
+          </accordion-trigger>
+          <accordion-content>
+            <p>
+              Shadow DOM proporciona encapsulación de estilos y DOM, evitando
+              conflictos con el resto de la página.
+            </p>
+            <div class="bg-[#f8f9fa] p-[12px] rounded-[4px] my-[8px]">
+              <code>const shadow = this.attachShadow({ mode: "open" });</code>
+            </div>
+          </accordion-content>
+        </accordion-item>
+      </custom-accordion>
+
+      <hr class="border-t border-gray-300 w-full my-[40px]" />
+
+      <custom-accordion type="multiple">
+        <accordion-item value="feature-1">
+          <accordion-trigger>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-[40px] h-[40px] bg-blue-500 rounded-full flex items-center justify-center text-white font-bold"
+              >
+                1
+              </div>
+              <div>
+                <div class="font-semibold">Características Principales</div>
+                <div class="font-size-[12px] text-[#666]">
+                  Funcionalidades del componente
+                </div>
+              </div>
+            </div>
+          </accordion-trigger>
+          <accordion-content>
+            <ul>
+              <li>Soporte para single/multiple</li>
+              <li>Triggers personalizables</li>
+              <li>Animaciones suaves</li>
+              <li>Accesibilidad integrada</li>
+            </ul>
+          </accordion-content>
+        </accordion-item>
+
+        <accordion-item value="feature-2">
+          <accordion-trigger>
+            <div class="flex items-center gap-3">
+              <div
+                class="w-[40px] h-[40px] bg-green-600 rounded-full flex items-center justify-center text-white font-bold"
+              >
+                2
+              </div>
+              <div>
+                <div class="font-semibold">Implementación</div>
+                <div class="font-size[12px] text-[#666]">
+                  Métodos y propiedades públicas
+                </div>
+              </div>
+            </div>
+          </accordion-trigger>
+          <accordion-content>
+            <p>El componente expone varios métodos públicos:</p>
+            <pre
+              class="bg-[#f8f9fa] p-[12px] rounded-[4px] overflow-x-auto"
+            ><code>// Métodos del accordion
+  accordion.openItem('item-1');
+  accordion.closeItem('item-1');
+  accordion.toggleItem('item-1');
+  
+  // Propiedades
+  accordion.type // 'single' | 'multiple'
+  accordion.defaultValue // valor por defecto
+  accordion.collapsible // boolean</code></pre>
+          </accordion-content>
+        </accordion-item>
+      </custom-accordion>
+    </div>
+    <script type="module" src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </body>
+</html>
