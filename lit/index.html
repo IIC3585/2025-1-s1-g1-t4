@@ -1,18 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Components</title>
-  </head>
-  <body>
-    <h1 class="text-3xl font-bold underline">
-      App with Lit Element y lit-html
-    </h1>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cards de Suscripción con LitElement</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-pink-50">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden min-h-[80vh] flex items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <div class="space-y-6">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-tight">
+              La Mejor Experiencia de
+              <span class="bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
+                Memes de Gatos
+              </span>
+            </h1>
+
+            <p class="text-xl lg:text-2xl text-gray-600 leading-relaxed ">
+              Sumérgete en la colección más grande del mundo de memes divertidos de gatos. Desde clásicos hasta las
+              últimas sensaciones virales.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <custom-button variant="primary" size="large" class="px-8 py-4 text-lg">
+              Comenzar Gratis
+            </custom-button>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="relative z-10">
+            <div
+              class="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-orange-100 to-pink-100 p-8 lg:p-12">
+              <img
+                src="https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Gato divertido con expresión graciosa" class="w-full h-full object-cover rounded-2xl" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion Section -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900">Características Principales</h2>
+    <my-accordion class="space-y-4">
+      <ac-item class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+        <ac-header slot="header" class="text-xl lg:text-2xl font-semibold p-6">Memes Diarios de Gatos</ac-header>
+        <ac-details slot="details" class="p-6 pt-0">
+          <h3 class="text-lg lg:text-xl font-semibold mb-4">Recibe tu dosis diaria de humor gatuno</h3>
+          <p class="mb-6 text-lg">Cada día seleccionamos los memes de gatos más graciosos y virales para alegrar tu
+            jornada. ¡No te pierdas el meme del día y compártelo con tus amigos!</p>
+          <ul class="list-disc pl-6 space-y-2 text-lg">
+            <li>Gatos con expresiones épicas</li>
+            <li>Videos cortos de travesuras felinas</li>
+            <li>GIFs animados para compartir en redes</li>
+          </ul>
+        </ac-details>
+      </ac-item>
+      <ac-item class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+        <ac-header slot="header" class="text-xl lg:text-2xl font-semibold p-6">Herramientas para Crear Memes</ac-header>
+        <ac-details slot="details" class="p-6 pt-0">
+          <h3 class="text-lg lg:text-xl font-semibold mb-4">¡Crea tus propios memes de gatos!</h3>
+          <p class="mb-6 text-lg">Utiliza nuestras herramientas fáciles de usar para personalizar imágenes de gatos,
+            añadir textos divertidos y compartir tus creaciones con la comunidad.</p>
+          <ul class="list-disc pl-6 space-y-2 text-lg">
+            <li>Editor de imágenes con stickers y fuentes</li>
+            <li>Plantillas de memes populares</li>
+            <li>Galería de imágenes libres de derechos</li>
+          </ul>
+        </ac-details>
+      </ac-item>
+      <ac-item class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+        <ac-header slot="header" class="text-xl lg:text-2xl font-semibold p-6">Colecciones Exclusivas de
+          Memes</ac-header>
+        <ac-details slot="details" class="p-6 pt-0">
+          <h3 class="text-lg lg:text-xl font-semibold mb-4">Colecciones temáticas para verdaderos fans</h3>
+          <p class="mb-6 text-lg">Explora colecciones exclusivas como "Gatos en el trabajo", "Gatos y comida", y "Gatos
+            famosos de internet". ¡Descubre memes que no encontrarás en ningún otro sitio!</p>
+          <div class="text-blue-600">
+            <ul class="list-disc pl-6 space-y-2 text-lg">
+              <li>Memes clásicos y vintage</li>
+              <li>Ediciones especiales por temporada</li>
+              <li>Colaboraciones con creadores de memes</li>
+            </ul>
+          </div>
+        </ac-details>
+      </ac-item>
+      <ac-item class="border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+        <ac-header slot="header" class="text-xl lg:text-2xl font-semibold p-6">Comunidad y Compartir</ac-header>
+        <ac-details slot="details" class="p-6 pt-0">
+          <h3 class="text-lg lg:text-xl font-semibold mb-4">Únete a la comunidad meme-gatera</h3>
+          <p class="mb-6 text-lg">Participa en retos semanales, vota por tus memes favoritos y comparte tus creaciones.
+            Conecta con otros amantes de los gatos y haz que tu meme sea tendencia.</p>
+          <ul class="list-disc pl-6 space-y-2 text-lg">
+            <li>Foros y grupos de discusión</li>
+            <li>Ranking de memes más populares</li>
+            <li>Eventos y concursos mensuales</li>
+          </ul>
+        </ac-details>
+      </ac-item>
+    </my-accordion>
+  </div>
+
+  <section className="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <h2 class="text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900">Planes</h2>
+      <div class="w-full flex flex-col md:flex-row gap-6 items-center justify-center">
+        <card-plan badge-text="Gratis" class="w-full md:w-1/3">
+          <card-header class="text-xl lg:text-2xl font-semibold p-6">
+            <card-title class="text-2xl lg:text-4xl p-6">Plan Gratis</card-title>
+            <card-description class="text-xl p-6">Empieza sin costo</card-description>
+          </card-header>
+          <card-content>
+            <card-price period="/mes">$0</card-price>
+            <div class="flex flex-col gap-2">
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i data-lucide="badge-check"></i>Memes
+                diarios limitados</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i data-lucide="badge-check"></i>Acceso
+                a memes clásicos</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i
+                  data-lucide="badge-check"></i>Comunidad básica</feature-item>
+            </div>
+          </card-content>
+          <card-footer>
+            <custom-button variant="secondary" size="medium" style="width: 100%">
+              Elegir Plan
+            </custom-button>
+          </card-footer>
+        </card-plan>
+
+        <card-plan highlighted badge-text="Popular" class="w-full md:w-1/3">
+          <card-header class="text-xl lg:text-2xl font-semibold p-6">
+            <card-title class="text-2xl lg:text-4xl p-6">Plan Medio</card-title>
+            <card-description class="text-xl p-6">Más memes y herramientas</card-description>
+          </card-header>
+          <card-content>
+            <card-price period="/mes">$4</card-price>
+            <div class="flex flex-col gap-2">
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i data-lucide="badge-check"></i>Memes
+                diarios ilimitados</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i
+                  data-lucide="badge-check"></i>Herramientas básicas de edición</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i
+                  data-lucide="badge-check"></i>Colecciones temáticas</feature-item>
+            </div>
+          </card-content>
+          <card-footer>
+            <custom-button variant="primary" size="medium" style="width: 100%">
+              Elegir Plan
+            </custom-button>
+          </card-footer>
+        </card-plan>
+
+        <card-plan class="w-full md:w-1/3">
+          <card-header class="text-xl lg:text-2xl font-semibold p-6">
+            <card-title class="text-2xl lg:text-4xl p-6">Plan Pro</card-title>
+            <card-description class="text-xl p-6">Más memes y herramientas</card-description>
+          </card-header>
+          <card-content>
+            <card-price period="/mes">$4</card-price>
+            <div class="flex flex-col gap-2">
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i data-lucide="badge-check"></i>Memes
+                mensuales ilimitados</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i
+                  data-lucide="badge-check"></i>Herramientas complejas de edición</feature-item>
+              <feature-item class="text-xl text-semibold p-6 inline-flex gap-2"><i
+                  data-lucide="badge-check"></i>Colecciones temáticas</feature-item>
+            </div>
+          </card-content>
+          <card-footer>
+            <custom-button variant="secondary" size="medium" style="width: 100%">
+              Elegir Plan
+            </custom-button>
+          </card-footer>
+        </card-plan>
+      </div>
+    </div>
+  </section>
+</body>
+<script type="module" src="src/components/button/index.js"></script>
+<script type="module" src="src/components/suscription/card-plan.js"></script>
+<script type="module" src="src/components/accordion/script.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+
 </html>
