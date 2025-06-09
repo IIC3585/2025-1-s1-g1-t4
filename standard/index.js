@@ -1,16 +1,5 @@
-// Initialize Lucide icons
 lucide.createIcons();
 
-// Navigation functions
-function navigateToSuscription() {
-  window.location.href = "./src/components/suscription/index.html";
-}
-
-function navigateToAccordion() {
-  window.location.href = "./src/components/accordion/index.html";
-}
-
-// Reveal content functionality
 const exploreBtn = document.getElementById("exploreBtn");
 const hiddenContent = document.getElementById("hiddenContent");
 
@@ -29,7 +18,6 @@ exploreBtn.addEventListener("click", () => {
   }, 200);
 });
 
-// Add sparkle effect on hover
 function createSparkle(x, y) {
   const sparkle = document.createElement("div");
   sparkle.className =
@@ -46,7 +34,6 @@ function createSparkle(x, y) {
   }, 1000);
 }
 
-// Add sparkles on button hover
 document.addEventListener("mouseover", (e) => {
   if (e.target.tagName === "BUTTON" || e.target.closest("button")) {
     const target =
